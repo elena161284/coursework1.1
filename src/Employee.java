@@ -1,34 +1,25 @@
 public class Employee {
+    private static int idCounter=0;
     private final int id;
-    private final String surName;
-    private final String name;
-    private final String patronymic;
+    private final String fio;
     private int department;
     private int salary;
 
-    private static int idCounter;
-
-    public Employee(String surName, String name, String patronymic, int department, int salary) {
-        this.surName = surName;
-        this.name = name;
-        this.patronymic = patronymic;
+    public Employee(String fio, int department, int salary) {
+        if (department < 1 && department > 5){
+            throw new IllegalStateException("отдел от 1 до 5");
+    }
+        this.id = ++idCounter;
+        this.fio = fio;
         this.department = department;
-        if (salary > 0) {
-            this.salary = salary;
-        }
-        id = idCounter++;
-    }
+        this.salary=salary;
 
-    String getSurName() {
-        return surName;
     }
-
-    String getName() {
-        return name;
+    int getId() {
+        return id;
     }
-
-    String getPatronymic() {
-        return patronymic;
+    String getFio() {
+        return fio;
     }
 
     int getDepartment() {
@@ -37,9 +28,6 @@ public class Employee {
 
     int getSalary() {
         return salary;
-    }
-    int getId() {
-        return id;
     }
 
     public void setSalary(int salary) {
@@ -51,7 +39,7 @@ public class Employee {
     }
 
     public String toString() {
-        return "сотрудник: " + this.surName + " " + this.name + " " + this.patronymic
-                + " отдел " + this.department + " зарплата " + this.salary;
+        return this.id+"." + this.fio + " "+ " отдел " + this.department + " зарплата " + this.salary;
     }
-}
+
+    }
